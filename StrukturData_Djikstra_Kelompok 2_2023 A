@@ -91,3 +91,35 @@ peta_jatim.tambahkanKota("Ngawi")
 peta_jatim.tambahkanKota("Bojonegoro")
 peta_jatim.tambahkanKota("Tuban")
 
+# Menambahkan jalan-jalan ke peta berserta jarak
+peta_jatim.tambahkanJalan("Surabaya", "Sidoarjo", 37)
+peta_jatim.tambahkanJalan("Surabaya", "Tuban", 103)
+peta_jatim.tambahkanJalan("Surabaya", "Bojonegoro", 137)
+peta_jatim.tambahkanJalan("Surabaya", "Nganjuk", 116)
+peta_jatim.tambahkanJalan("Sidoarjo", "Probolinggo", 81)
+peta_jatim.tambahkanJalan("Sidoarjo", "Malang", 70)
+peta_jatim.tambahkanJalan("Sidoarjo", "Nganjuk", 100)
+peta_jatim.tambahkanJalan("Sidoarjo", "Bojonegoro", 143)
+peta_jatim.tambahkanJalan("Blitar", "Malang", 76)
+peta_jatim.tambahkanJalan("Blitar", "Ponorogo", 114)
+peta_jatim.tambahkanJalan("Blitar", "Nganjuk", 76)
+peta_jatim.tambahkanJalan("Nganjuk", "Ngawi", 77)
+peta_jatim.tambahkanJalan("Nganjuk", "Ponorogo", 88)
+peta_jatim.tambahkanJalan("Nganjuk", "Bojonegoro", 55)
+peta_jatim.tambahkanJalan("Nganjuk", "Probolinggo", 196)
+peta_jatim.tambahkanJalan("Ngawi", "Bojonegoro", 60)
+peta_jatim.tambahkanJalan("Ngawi", "Ponorogo", 67)
+peta_jatim.tambahkanJalan("Ngawi", "Tuban", 112)
+
+# Menampilkan peta
+print('---------------Peta Jawa Timur-----------------')
+peta_jatim.printPeta()
+
+# Contoh penggunaan Dijkstra untuk mencari jarak terpendek dari sebuah kota
+start = "Surabaya"
+goal = "Malang" 
+shortest_distance = peta_jatim.dijkstra(start, goal)
+if shortest_distance is not None:
+    print(f"Jarak terpendek dari {start} ke {goal} adalah {shortest_distance}")
+else:
+    print(f"Tidak ada jalur yang menghubung {start} dan {goal}")
