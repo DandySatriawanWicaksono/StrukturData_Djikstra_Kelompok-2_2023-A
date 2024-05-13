@@ -36,3 +36,58 @@ class Peta:
             self.weights[(kota2, kota1)] = jarak
             return True
         return False
+
+    def hapusJalan(self, kota1, kota2):
+        if kota1 in self.cityList and kota2 in self.cityList:
+            if (kota1, kota2) in self.weights:
+                del self.weights[(kota1, kota2)]
+            if (kota2, kota1) in self.weights:
+                del self.weights[(kota2, kota1)]
+            self.cityList[kota1].remove(kota2)
+            self.cityList[kota2].remove(kota1)
+            return True
+        return False
+    
+    def dijkstra(self, start, goal):
+        # Inisialisasi jarak dari start ke semua kota dengan nilai tak terhingga
+        distances = {city: float('inf') for city in self.cityList}
+        distances[start] = 0
+        
+        # Priority queue untuk menyimpan kota yang akan dieksplorasi
+        queue = [(0, start)]
+        
+        while queue:
+            current_distance, current_city = heapq.heappop(queue)
+            
+            # Jika sudah sampai ke tujuan, kembalikan jaraknya
+            if current_city == goal:
+                return distances[current_city]
+            
+            # Cek kota-kota terhubung dari kota saat ini
+            for neighbor in self.cityList[current_city]:
+                # Hitung jarak baru
+                distance = current_distance + self.weights[(current_city, neighbor)]
+                
+                # Jika jarak baru lebih pendek dari jarak sebelumnya, update jarak
+                if distance < distances[neighbor]:
+                    distances[neighbor] = distance
+                    heapq.heappush(queue, (distance, neighbor))
+        
+        # Jika tidak ada jalur yang ditemukan, kembalikan None
+        return None
+
+# Instansiasi objek Peta
+peta_jatim = Peta()
+
+# Menambahkan kota-kota ke peta
+peta_jatim.tambahkanKota("Surabaya")
+peta_jatim.tambahkanKota("Sidoarjo")
+peta_jatim.tambahkanKota("Probolinggo")
+peta_jatim.tambahkanKota("Malang")
+peta_jatim.tambahkanKota("Blitar")
+peta_jatim.tambahkanKota("Nganjuk")
+peta_jatim.tambahkanKota("Ponorogo")
+peta_jatim.tambahkanKota("Ngawi")
+peta_jatim.tambahkanKota("Bojonegoro")
+peta_jatim.tambahkanKota("Tuban")
+
